@@ -99,9 +99,41 @@ class DoublyLinkedList {
         current.value = value
         return true
     }
+
+    insert(index, value){
+        if(index < 0 || index >= this.length) return null
+        let node = new Node(value)
+        if(this.length === 0){
+            this.head = this.tail = node
+        }else{
+            let current = this.get(index)
+            let previous = this.get(index - 1)
+            node.next = current
+            previous.next = node
+            node.previous = previous
+        }
+        this.length++
+        return this
+    }
+
+    remove(index){
+        if(index < 0 || index >= this.length) return undefined
+        if(index === 0) return this.shift()
+        if(index === this.length - 1) return this.pop()
+        let nodeToRemove = this.get(index)
+        nodeToRemove.previous.next = nodeToRemove.next
+        nodeToRemove.next.previous = nodeToRemove.previous
+        nodeToRemove.next = null
+        nodeToRemove.previous = null
+        this.length--
+        return nodeToRemove
+    }
 }
 
 let dll = new DoublyLinkedList()
-dll.unshift(1)
-dll.unshift(2)
-console.log(dll.get(2))
+dll.push(1)
+dll.push(2)
+dll.push(3)
+// console.log(dll)
+console.log(dll.remove(2))
+console.log(dll)

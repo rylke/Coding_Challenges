@@ -13,3 +13,6 @@ function validateBrakets(inputStr) {
     }
     return openingBracketsStack.length === 0;
 }
+
+console.log(validateBrakets("[{}]"))
+console.log(validateBrakets("[{]"))
