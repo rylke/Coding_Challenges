@@ -25,16 +25,14 @@ class BinarySearchTree{
                     if(current.left === null){
                         current.left = node
                         return this
-                    }else{
-                        current = current.left
                     }
+                    current = current.left
                 }else if(value > current.value){
                     if(current.right === null){
                         current.right = node
                         return this
-                    }else{
-                        current = current.right
                     }
+                    current = current.right
                 }
             }
         }
@@ -45,4 +43,4 @@ let bst = new BinarySearchTree()
 bst.insert(55)
 bst.insert(44)
 bst.insert(66)
-console.log(bst.insert(66))
+console.log(bst.insert(33))
