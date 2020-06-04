@@ -6,7 +6,6 @@ class Node{
         this.left = null
     }
 }
-
 class BinarySearchTree{
     constructor() {
         this.root = null
@@ -37,10 +36,45 @@ class BinarySearchTree{
             }
         }
     }
+
+    find(value){
+        if(!this.root) return false
+        let current = this.root
+        let found = false
+        while(current && !found){
+            if(value === current.value){
+                found = true
+            }else if(value > current.value){
+                current = current.right
+            }else if (value < current.value){
+                current = current.left
+            }
+        }
+        return found
+    }
+
+    BFS(){
+        if(!this.root) return null
+        let queue = []
+        let result = []
+        queue.push(this.root)
+        while(queue.length){
+            let currentNode = queue.shift()
+            if(currentNode.left) queue.push(currentNode.left)
+            if(currentNode.right) queue.push(currentNode.right)
+            result.push(currentNode.value)
+        }
+        return result
+    }
+        
 }
 
 let bst = new BinarySearchTree()
-bst.insert(55)
-bst.insert(44)
-bst.insert(66)
-console.log(bst.insert(33))
+bst.insert(10)
+bst.insert(6)
+bst.insert(15)
+bst.insert(3)
+bst.insert(8)
+bst.insert(12)
+bst.insert(20)
+console.log(bst.BFS())
